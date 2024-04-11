@@ -58,6 +58,9 @@ ball2lose = False
 ball2name = font2.render("Player 1", False, "White")
 ball2namerect = ball1name.get_rect(topleft = (15, 10))
 
+Play = font.render('Play', False, 'White')
+Play_rect = Play.get_rect(center = (400, 200))
+
 
 run = True
 in_game = False
@@ -74,6 +77,12 @@ while run:
             if event.key == pygame.K_UP:
                 if ball1.rect.colliderect(ball2.rect):
                     ball2.attack(5)
+        mouse_pos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if Play_rect.collidepoint(mouse_pos):
+                home = False
+                in_game = True
+
     if ball1.hp <= 0:
         ball1lose = True
         in_game = False
@@ -82,8 +91,6 @@ while run:
         in_game = False
     if home:
         screen.fill('cadetblue3')
-        Play = font.render('Play', False, 'White')
-        Play_rect = Play.get_rect(center = (400, 200))
         screen.blit(Play, Play_rect)
     if in_game:
         # keys
