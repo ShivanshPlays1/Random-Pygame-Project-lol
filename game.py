@@ -5,7 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 400))
 clock = pygame.time.Clock()
 font = pygame.font.Font("SuperPixel-m2L8j.ttf", 90)
-font3 = pygame.font.Font("SuperPixel-m2L8j.ttf", 20)
+font3 = pygame.font.Font("SuperPixel-m2L8j.ttf", 80)
 font2 = pygame.font.Font("ARCADECLASSIC.TTF", 30)
 class ball:
     def __init__(self, x: int, y: int, l: int, hp: 100, max_hp: 100):
@@ -58,7 +58,7 @@ ball2lose = False
 ball2name = font2.render("Player 1", False, "White")
 ball2namerect = ball1name.get_rect(topleft = (15, 10))
 
-Play = font.render('Play', False, 'White')
+Play = font3.render('Play', False, 'White')
 Play_rect = Play.get_rect(center = (400, 200))
 
 
@@ -91,6 +91,7 @@ while run:
         in_game = False
     if home:
         screen.fill('cadetblue3')
+        play_border = pygame.draw.rect(screen, "cadetblue3", Play_rect)
         screen.blit(Play, Play_rect)
     if in_game:
         # keys
