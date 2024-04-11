@@ -5,6 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 400))
 clock = pygame.time.Clock()
 font = pygame.font.Font("SuperPixel-m2L8j.ttf", 90)
+font3 = pygame.font.Font("SuperPixel-m2L8j.ttf", 20)
 font2 = pygame.font.Font("ARCADECLASSIC.TTF", 30)
 class ball:
     def __init__(self, x: int, y: int, l: int, hp: 100, max_hp: 100):
@@ -59,7 +60,8 @@ ball2namerect = ball1name.get_rect(topleft = (15, 10))
 
 
 run = True
-in_game = True
+in_game = False
+home = True
 
 while run:
     for event in pygame.event.get():
@@ -78,6 +80,11 @@ while run:
     if ball2.hp <= 0:
         ball2lose = True
         in_game = False
+    if home:
+        screen.fill('cadetblue3')
+        Play = font.render('Play', False, 'White')
+        Play_rect = Play.get_rect(center = (400, 200))
+        screen.blit(Play, Play_rect)
     if in_game:
         # keys
         pressed = pygame.key.get_pressed()
@@ -131,7 +138,7 @@ while run:
         ground = pygame.draw.rect(screen, "chartreuse4", (0, (ball1.y + 50), 800, (800 - ball1.y)))
         ball1.draw("yellow")
         ball2.draw("green")
-    else:
+    elif home == False:
         screen.fill("cadetblue3")
         text = font.render("YOU LOSE!", False, "white")
         text_rect = text.get_rect(center=(400, 200))
